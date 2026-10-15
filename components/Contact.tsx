@@ -1,4 +1,7 @@
 // Contact.tsx: ways to reach you. Edit the hrefs below with your real links.
+import Reveal from "@/components/Reveal";
+import { SignatureLine } from "@/components/Illustrations";
+
 const contacts = [
   { label: "Email", href: "mailto:you@example.com", text: "you@example.com" }, // PLACEHOLDER
   { label: "LinkedIn", href: "https://linkedin.com/in/your-profile", text: "linkedin.com/in/your-profile" }, // PLACEHOLDER
@@ -7,20 +10,30 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="border-t border-line">
-      <div className="mx-auto grid max-w-5xl gap-10 px-6 py-24 md:grid-cols-3">
-        <h2 className="text-sm uppercase tracking-[0.2em] text-muted">Contact</h2>
-        <ul className="space-y-4 md:col-span-2">
+    <section id="contact" className="relative overflow-hidden border-t border-line">
+      {/* soft background blob */}
+      <div aria-hidden className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
+      <Reveal className="relative mx-auto grid max-w-6xl gap-10 px-6 py-28 md:grid-cols-3">
+        <div>
+          <p className="text-xs uppercase tracking-[0.3em] text-muted">Contact</p>
+          <h2 className="mt-3 font-serif text-4xl">Let&apos;s talk</h2>
+          <SignatureLine className="mt-3 w-28 text-accent" />
+        </div>
+        <ul className="divide-y divide-line md:col-span-2">
           {contacts.map((c) => (
-            <li key={c.label} className="flex flex-col sm:flex-row sm:gap-6">
-              <span className="w-24 text-sm text-muted">{c.label}</span>
-              <a href={c.href} className="text-lg underline-offset-4 hover:underline">
-                {c.text}
+            <li key={c.label}>
+              {/* the arrow slides right on hover */}
+              <a href={c.href} className="group flex items-center justify-between py-5">
+                <span className="flex flex-col sm:flex-row sm:items-baseline sm:gap-6">
+                  <span className="w-24 text-sm text-muted">{c.label}</span>
+                  <span className="text-lg transition group-hover:text-accent">{c.text}</span>
+                </span>
+                <span className="text-muted transition group-hover:translate-x-1 group-hover:text-accent">→</span>
               </a>
             </li>
           ))}
         </ul>
-      </div>
+      </Reveal>
     </section>
   );
 }

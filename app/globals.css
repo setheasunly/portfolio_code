@@ -6,6 +6,7 @@
   --foreground: #1c1c1c; /* muted black text */
   --muted: #6b6b6b;      /* soft grey for secondary text */
   --line: #e6e6e1;       /* subtle divider lines */
+  --accent: #c8875a;     /* one subtle warm accent (terracotta) */
 }
 
 /* Makes the colours above usable as Tailwind classes, e.g. bg-background, text-muted */
@@ -14,7 +15,9 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-accent: var(--accent);
   --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
 }
 
 html { scroll-behavior: smooth; }
@@ -32,3 +35,24 @@ body {
 }
 .fade-in { animation: fadeIn 0.9s ease-out both; }
 .fade-in-delay { animation: fadeIn 0.9s ease-out 0.25s both; }
+
+/* Scroll-reveal: starts hidden, becomes visible when Reveal adds "is-visible" */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Gentle floating motion for parts of the hero drawing */
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.float { animation: float 5s ease-in-out infinite; transform-box: fill-box; }
+.float-slow { animation: float 7s ease-in-out infinite; transform-box: fill-box; }
+
+/* Film-grain texture over the whole page (an SVG noise pattern) */
+.grain::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* People who prefer less motion get no animations */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .float, .float-slow, .fade-in, .fade-in-delay { animation: none; }
+}

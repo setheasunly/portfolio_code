@@ -1,0 +1,34 @@
+/* globals.css: site-wide styles. Loads Tailwind and defines our colour palette. */
+@import "tailwindcss";
+
+:root {
+  --background: #fafaf7; /* off-white page background */
+  --foreground: #1c1c1c; /* muted black text */
+  --muted: #6b6b6b;      /* soft grey for secondary text */
+  --line: #e6e6e1;       /* subtle divider lines */
+}
+
+/* Makes the colours above usable as Tailwind classes, e.g. bg-background, text-muted */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --font-sans: var(--font-inter);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Subtle fade-in: add class "fade-in" to any element */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.9s ease-out both; }
+.fade-in-delay { animation: fadeIn 0.9s ease-out 0.25s both; }

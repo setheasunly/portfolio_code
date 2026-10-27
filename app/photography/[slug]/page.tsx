@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
+import PhotoBrand from "@/components/PhotoBrand";
 import { getAlbum, getAlbums } from "@/lib/albums";
 import { formatMonth } from "@/lib/photo-types";
 
@@ -28,7 +29,10 @@ export default function AlbumPage({ params }: Props) {
     <>
       <Header />
       <main className="mx-auto max-w-6xl px-6 py-20">
-        <Link href="/photography" className="text-sm text-muted transition hover:text-accent">← All albums</Link>
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <Link href="/photography" className="text-sm text-muted transition hover:text-accent">← All albums</Link>
+          <PhotoBrand />
+        </div>
         <Suspense fallback={<p className="mt-8 text-muted">Loading album…</p>}>
           <AlbumContent params={params} />
         </Suspense>

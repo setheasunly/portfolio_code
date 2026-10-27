@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { SITE_NAME } from "@/data/site";
 
 // next/font downloads Inter at build time and serves it from your own site.
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -11,8 +12,8 @@ const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
 
 // Page title and description (used by Google and link previews).
 export const metadata: Metadata = {
-  title: "Your Name — Portfolio", // PLACEHOLDER
-  description: "Personal portfolio of Your Name.", // PLACEHOLDER
+  title: `${SITE_NAME} — Portfolio`,
+  description: `Personal portfolio of ${SITE_NAME}.`,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

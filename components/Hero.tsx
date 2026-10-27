@@ -12,7 +12,7 @@ export default function Hero() {
         <div>
           <p className="fade-in text-xs uppercase tracking-[0.3em] text-muted">Hello, I&apos;m</p>
           <h1 className="fade-in mt-4 font-serif text-6xl leading-[1.05] tracking-tight sm:text-7xl">
-            Your <em className="text-accent">Name</em> {/* PLACEHOLDER */}
+            Sethea <em className="text-accent">Sunly</em> {/* your name; the surname is in the accent colour */}
           </h1>
           <p className="fade-in-delay mt-6 max-w-md text-lg leading-relaxed text-muted">
             [Placeholder] ICT student, developer and runner — building things with code,

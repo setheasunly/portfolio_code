@@ -4,9 +4,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AlbumGrid from "@/components/AlbumGrid";
 import { getAlbums, toSummary } from "@/lib/albums";
+import PhotoBrand from "@/components/PhotoBrand";
+import { SITE_NAME } from "@/data/site";
 import { CameraIcon, SignatureLine } from "@/components/Illustrations";
 
-export const metadata: Metadata = { title: "Photography — Your Name" }; // PLACEHOLDER name
+export const metadata: Metadata = { title: `Photography — ${SITE_NAME}` };
 
 export default async function PhotographyPage() {
   const albums = (await getAlbums()).map(toSummary); // read from public/albums at build time
@@ -21,6 +23,7 @@ export default async function PhotographyPage() {
               <p className="text-xs uppercase tracking-[0.3em] text-muted">Photography</p>
               <h1 className="mt-3 font-serif text-5xl sm:text-6xl">Albums</h1>
               <SignatureLine className="mt-3 w-28 text-accent" />
+              <PhotoBrand className="mt-4" />
               <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
                 [Placeholder] Moments I&apos;ve collected on digital and film — streets, coastlines, races and travels.
               </p>

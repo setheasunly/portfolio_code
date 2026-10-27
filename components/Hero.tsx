@@ -3,7 +3,7 @@ import { HeroScene } from "@/components/Illustrations";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden">
+    <section id="home" className="relative scroll-mt-20 overflow-hidden">
       {/* Soft blurred colour "blobs" in the background for a dreamy, cinematic feel */}
       <div aria-hidden className="pointer-events-none absolute -left-32 top-10 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute right-0 top-1/2 h-96 w-96 rounded-full bg-stone-300/40 blur-3xl" />

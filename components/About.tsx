@@ -5,15 +5,15 @@ import { CodeIcon, RunIcon, BikeIcon, CameraIcon, TravelIcon, SignatureLine } fr
 // Edit the cards here — each has an icon, a title and a short placeholder text.
 const cards = [
   { Icon: CodeIcon, title: "ICT & Software", text: "[Placeholder] What you build and study." },
-  { Icon: RunIcon, title: "Running", text: "[Placeholder] Marathons and charity runs." },
+  { Icon: RunIcon, title: "Running", text: "[Placeholder] Marathons and the group runs I organise." },
   { Icon: BikeIcon, title: "Cycling", text: "[Placeholder] Favourite rides and routes." },
-  { Icon: CameraIcon, title: "Photography", text: "[Placeholder] What you love to shoot." },
+  { Icon: CameraIcon, title: "Photography", text: "[Placeholder] My main hobby — digital and film." },
   { Icon: TravelIcon, title: "Travel", text: "[Placeholder] Places that shaped you." },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="relative border-t border-line">
+    <section id="about" className="relative scroll-mt-20 border-t border-line">
       <div className="mx-auto max-w-6xl px-6 py-28">
         <Reveal className="grid gap-10 md:grid-cols-3">
           <div>

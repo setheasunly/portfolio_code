@@ -10,7 +10,7 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-line">
+    <section id="contact" className="relative scroll-mt-20 overflow-hidden border-t border-line">
       {/* soft background blob */}
       <div aria-hidden className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
       <Reveal className="relative mx-auto grid max-w-6xl gap-10 px-6 py-28 md:grid-cols-3">

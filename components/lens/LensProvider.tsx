@@ -6,6 +6,8 @@
 //      2. it glides toward you and the focus ring turns, a light flare sweeps the glass
 //      3. the aperture blades open and we fly through the lens…
 //      4. …and the Photography page (already loaded underneath) is revealed.
+//  enterRunning(href) — "On your marks … Get set … GO!" then the journey line bolts across
+//      and the Running page is wiped into view.
 //  zoomInto(el, src, href) — clicking an album "frame" zooms the picture to fill the screen,
 //      then opens the album.
 //
@@ -14,13 +16,15 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import { usePathname, useRouter } from "next/navigation";
 import { animate, motion, useMotionValue, useTransform } from "motion/react";
 import LensCamera from "@/components/lens/LensCamera";
+import RaceStart from "@/components/running/RaceStart";
 
 type LensApi = {
   enterGallery: (href: string) => void;
+  enterRunning: (href: string) => void;
   zoomInto: (el: HTMLElement, src: string, href: string) => void;
   lensEntry: boolean; // true while a lens/zoom transition is covering the screen
 };
-const LensContext = createContext<LensApi>({ enterGallery: () => {}, zoomInto: () => {}, lensEntry: false });
+const LensContext = createContext<LensApi>({ enterGallery: () => {}, enterRunning: () => {}, zoomInto: () => {}, lensEntry: false });
 export const useLens = () => useContext(LensContext);
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -29,7 +33,7 @@ const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)
 export default function LensProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [mode, setMode] = useState<"idle" | "lens" | "fade" | "zoom">("idle");
+  const [mode, setMode] = useState<"idle" | "lens" | "fade" | "zoom" | "race">("idle");
   const [lensEntry, setLensEntry] = useState(false);
   const [zoomImg, setZoomImg] = useState<{ src: string; rect: DOMRect } | null>(null);
   const busy = useRef(false);
@@ -60,6 +64,10 @@ export default function LensProvider({ children }: { children: React.ReactNode }
   const blur = useMotionValue(0);      // blur while passing through the glass (px)
   const vignette = useMotionValue(0);  // dark edges
   const bloom = useMotionValue(0);     // soft white light as we emerge
+  const lanes = useMotionValue(0);   // race start: lane lines drawing in
+  const go = useMotionValue(0);      // race start: the journey line after GO
+  const wipe = useMotionValue(0);    // race start: wipe away to reveal the page (%)
+  const [raceStep, setRaceStep] = useState(0); // 1 = On your marks, 2 = Get set, 3 = GO!
   const zoomX = useMotionValue(0);   // album zoom: move picture to the centre
   const zoomY = useMotionValue(0);
   const filter = useTransform(blur, (b) => (b > 0.05 ? `blur(${b}px)` : "none"));
@@ -107,6 +115,38 @@ export default function LensProvider({ children }: { children: React.ReactNode }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
+  const enterRunning = useCallback(async (href: string) => {
+    if (busy.current) return;
+    busy.current = true;
+    router.prefetch(href);
+    setLensEntry(true);
+    if (prefersReduced()) {
+      setMode("fade"); overlay.set(0);
+      await animate(overlay, 1, { duration: 0.2 });
+      router.push(href);
+      await routeReady(href);
+      await animate(overlay, 0, { duration: 0.25 });
+    } else {
+      overlay.set(0); lanes.set(0); go.set(0); wipe.set(0); setRaceStep(0);
+      setMode("race");
+      await wait(16);
+      animate(overlay, 1, { duration: 0.25 });
+      animate(lanes, 1, { duration: 0.7, ease: [0.22, 1, 0.36, 1] });
+      await wait(150); setRaceStep(1);          // "On your marks"
+      await wait(500); setRaceStep(2);          // "Get set"
+      router.push(href);                        // load the page underneath
+      await wait(450); setRaceStep(3);          // "GO!"
+      await animate(go, 1, { duration: 0.5, ease: [0.5, 0, 0.2, 1] }); // the line bolts away
+      await routeReady(href);
+      await animate(wipe, 100, { duration: 0.5, ease: [0.7, 0, 0.3, 1] }); // wipe to reveal the page
+    }
+    setMode("idle"); setRaceStep(0);
+    busy.current = false;
+    await wait(800);
+    setLensEntry(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
+
   const zoomInto = useCallback(async (el: HTMLElement, src: string, href: string) => {
     if (busy.current) return;
     if (prefersReduced()) { router.push(href); return; }
@@ -135,7 +175,7 @@ export default function LensProvider({ children }: { children: React.ReactNode }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
   return (
-    <LensContext.Provider value={{ enterGallery, zoomInto, lensEntry }}>
+    <LensContext.Provider value={{ enterGallery, enterRunning, zoomInto, lensEntry }}>
       {children}
 
       {mode === "lens" && (
@@ -152,6 +192,8 @@ export default function LensProvider({ children }: { children: React.ReactNode }
           <motion.div className="pointer-events-none absolute inset-0" style={{ opacity: bloom, background: "radial-gradient(circle at center, #fff 0%, #fff4ea 35%, rgba(255,244,234,0) 75%)" }} />
         </motion.div>
       )}
+
+      {mode === "race" && <RaceStart step={raceStep} lanes={lanes} go={go} wipe={wipe} opacity={overlay} />}
 
       {mode === "fade" && (
         <motion.div aria-hidden className="fixed inset-0 z-[80] bg-background" style={{ opacity: overlay }} />

@@ -99,3 +99,11 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .iris-intro { animation: none; }
 }
+
+/* ---------- Running page ---------- */
+/* short "track wipe" when you visit /running directly */
+@keyframes runIn { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.run-intro { animation: runIn 0.8s cubic-bezier(0.65, 0, 0.35, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .run-intro { animation: none; }
+}

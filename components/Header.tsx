@@ -5,6 +5,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import LensLink from "@/components/lens/LensLink";
+import RunLink from "@/components/running/RunLink";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { SITE_NAME } from "@/data/site";
 
@@ -12,7 +13,7 @@ const links = [
   { href: "/#home", label: "Home" },
   { href: "/#about", label: "About" },
   { href: "/photography", label: "Photography" },
-  { href: "/#running", label: "Running" },
+  { href: "/running", label: "Running" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -52,9 +53,10 @@ export default function Header() {
               {(() => {
                 const cls = "relative transition-colors hover:text-foreground after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all hover:after:w-full";
                 // The Photography link plays the "through the lens" transition
-                return link.href === "/photography"
-                  ? <LensLink href={link.href} className={cls}>{link.label}</LensLink>
-                  : <Link href={link.href} className={cls}>{link.label}</Link>;
+                // …and the Running link plays "On your marks … GO!"
+                if (link.href === "/photography") return <LensLink href={link.href} className={cls}>{link.label}</LensLink>;
+                if (link.href === "/running") return <RunLink href={link.href} className={cls}>{link.label}</RunLink>;
+                return <Link href={link.href} className={cls}>{link.label}</Link>;
               })()}
             </li>
           ))}

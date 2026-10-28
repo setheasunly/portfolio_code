@@ -5,6 +5,8 @@ import { SignatureLine } from "@/components/Illustrations";
 import RunnerArt from "@/components/motion/RunnerArt";
 import WordReveal from "@/components/motion/WordReveal";
 import { events } from "@/data/events";
+import RunLink from "@/components/running/RunLink";
+import Magnetic from "@/components/motion/Magnetic";
 
 export default function Running() {
   return (
@@ -19,6 +21,11 @@ export default function Running() {
             <p>[Placeholder] How you got into running — your first race, your marathons and what keeps you going.</p>
             <p>[Placeholder] Why you organise runs: to bring people together, all paces welcome.</p>
           </div>
+          <div className="mt-8"><Magnetic>
+            <RunLink href="/running" className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 px-6 py-3 text-sm transition-colors hover:border-foreground">
+              Follow my running journey <span className="transition group-hover:translate-x-1">→</span>
+            </RunLink>
+          </Magnetic></div>
           {/* the runners jog toward the flag as you scroll */}
           <RunnerArt className="mt-10 w-full max-w-md text-foreground/75" />
         </Reveal>

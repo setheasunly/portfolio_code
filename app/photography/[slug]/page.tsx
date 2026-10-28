@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
 import PhotoBrand from "@/components/PhotoBrand";
+import WordReveal from "@/components/motion/WordReveal";
 import { getAlbum, getAlbums } from "@/lib/albums";
 import { formatMonth } from "@/lib/photo-types";
 
@@ -53,7 +54,7 @@ async function AlbumContent({ params }: Props) {
       <div className="mt-8 grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2">
           <p className="text-xs uppercase tracking-[0.3em] text-muted">{isFilm ? "Film" : "Digital"} · {formatMonth(album.date)}</p>
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl">{album.title}</h1>
+          <WordReveal as="h1" text={album.title} className="mt-3 font-serif text-4xl sm:text-5xl" />
           {album.description && <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">{album.description}</p>}
         </div>
         <dl className="space-y-3 self-end text-sm md:text-right">

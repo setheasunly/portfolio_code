@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import AlbumGrid from "@/components/AlbumGrid";
 import { getAlbums, toSummary } from "@/lib/albums";
 import PhotoBrand from "@/components/PhotoBrand";
+import WordReveal from "@/components/motion/WordReveal";
 import { SITE_NAME } from "@/data/site";
 import { CameraIcon, SignatureLine } from "@/components/Illustrations";
 
@@ -21,7 +22,7 @@ export default async function PhotographyPage() {
           <div className="flex items-start justify-between gap-8">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-muted">Photography</p>
-              <h1 className="mt-3 font-serif text-5xl sm:text-6xl">Albums</h1>
+              <WordReveal as="h1" text="Albums" className="mt-3 font-serif text-5xl sm:text-6xl" />
               <SignatureLine className="mt-3 w-28 text-accent" />
               <PhotoBrand className="mt-4" />
               <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">

@@ -1,5 +1,7 @@
 // About.tsx: your story plus illustrated cards for each part of your life.
 import Reveal from "@/components/Reveal";
+import WordReveal from "@/components/motion/WordReveal";
+import TiltCard from "@/components/motion/TiltCard";
 import { CodeIcon, RunIcon, BikeIcon, CameraIcon, TravelIcon, SignatureLine } from "@/components/Illustrations";
 
 // Edit the cards here — each has an icon, a title and a short placeholder text.
@@ -18,7 +20,7 @@ export default function About() {
         <Reveal className="grid gap-10 md:grid-cols-3">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-muted">About Me</p>
-            <h2 className="mt-3 font-serif text-4xl">A little about me</h2>
+            <WordReveal text="A little about me" className="mt-3 font-serif text-4xl" />
             <SignatureLine className="mt-3 w-28 text-accent" />
           </div>
           <div className="space-y-5 text-lg leading-relaxed md:col-span-2">
@@ -31,13 +33,16 @@ export default function About() {
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {cards.map(({ Icon, title, text }, i) => (
             <Reveal key={title} delay={i * 100}>
-              <div className="group h-full rounded-2xl border border-line bg-white/50 p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.15)]">
-                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 text-foreground/80 transition group-hover:bg-accent/20 group-hover:text-accent">
-                  <Icon className="h-8 w-8" />
+              {/* TiltCard: the card tilts in 3D toward your mouse */}
+              <TiltCard className="h-full">
+                <div className="group h-full rounded-2xl border border-line bg-white/50 p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.15)]">
+                  <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 text-foreground/80 transition group-hover:bg-accent/20 group-hover:text-accent">
+                    <Icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="font-serif text-xl">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{text}</p>
                 </div>
-                <h3 className="font-serif text-xl">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{text}</p>
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

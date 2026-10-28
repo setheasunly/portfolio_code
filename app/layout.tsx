@@ -4,6 +4,10 @@ import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { SITE_NAME } from "@/data/site";
+import MotionProvider from "@/components/motion/MotionProvider";
+import SmoothScroll from "@/components/motion/SmoothScroll";
+import ScrollProgress from "@/components/motion/ScrollProgress";
+import Cursor from "@/components/motion/Cursor";
 
 // next/font downloads Inter at build time and serves it from your own site.
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -18,8 +22,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${fraunces.variable} grain antialiased`}>{children}</body>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={`${inter.variable} ${fraunces.variable} grain antialiased`}>
+        {/* Site-wide motion: smooth scrolling, the top progress bar and the mouse follower */}
+        <MotionProvider>
+          <SmoothScroll />
+          <ScrollProgress />
+          <Cursor />
+          {children}
+        </MotionProvider>
+      </body>
     </html>
   );
 }

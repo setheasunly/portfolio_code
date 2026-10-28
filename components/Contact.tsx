@@ -1,5 +1,6 @@
 // Contact.tsx: ways to reach you. Edit the hrefs below with your real links.
 import Reveal from "@/components/Reveal";
+import WordReveal from "@/components/motion/WordReveal";
 import { SignatureLine } from "@/components/Illustrations";
 
 const contacts = [
@@ -16,7 +17,7 @@ export default function Contact() {
       <Reveal className="relative mx-auto grid max-w-6xl gap-10 px-6 py-28 md:grid-cols-3">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-muted">Contact</p>
-          <h2 className="mt-3 font-serif text-4xl">Let&apos;s talk</h2>
+          <WordReveal text="Let’s talk" className="mt-3 font-serif text-4xl" />
           <SignatureLine className="mt-3 w-28 text-accent" />
         </div>
         <ul className="divide-y divide-line md:col-span-2">

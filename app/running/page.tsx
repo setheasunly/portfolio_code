@@ -1,18 +1,16 @@
 // app/running/page.tsx: the /running page (DRAFT).
 //  1. Intro
 //  2. The journey: every race as one continuous elevation ribbon (scroll to run it)
-//  3. Fundraising, the run journal and the community photo wall
+//  3. The run journal and the community photo wall
 // All the content comes from data/runs.ts.
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WordReveal from "@/components/motion/WordReveal";
-import Reveal from "@/components/Reveal";
 import { SignatureLine } from "@/components/Illustrations";
 import JourneyHorizontal from "@/components/running/JourneyHorizontal";
 import JourneyVertical from "@/components/running/JourneyVertical";
 import RunEntrance from "@/components/running/RunEntrance";
-import Fundraising from "@/components/running/Fundraising";
 import Journal from "@/components/running/Journal";
 import CommunityWall from "@/components/running/CommunityWall";
 import { journey } from "@/data/runs";
@@ -67,8 +65,6 @@ export default function RunningPage() {
 
           {/* 3. Lower sections */}
           <div className="mx-auto max-w-6xl space-y-32 px-6 py-32">
-            <Reveal><Fundraising /></Reveal>
-
             <section>
               <SectionHead label="Run journal" title="Notes from the road">Short posts after big (and small) runs.</SectionHead>
               <Journal />

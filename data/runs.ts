@@ -3,7 +3,6 @@
 //  journey      — the races you've finished, joined as ONE continuous elevation line.
 //                 Add a new race by copying a block. The order in the file doesn't matter:
 //                 the page sorts them by date. See HOW-TO-ADD-RUNS.md.
-//  fundraiser   — the cause you're running for (progress bar + donate button).
 //  journal      — short run diary posts.
 //  communityWall — captions for the polaroid photo wall.
 //
@@ -63,25 +62,15 @@ export const journey: JourneyRun[] = [
   },
   {
     date: "2026-05",
-    name: "EXAMPLE — Harbour Charity 10K",
+    name: "EXAMPLE — Harbour 10K",
     location: "Example: Sydney Harbour",
     distanceKm: 10,
     elevationM: 120,
     time: "48:55",
-    story: "Placeholder story. A short one for a good cause, with friends from the club.",
+    story: "Placeholder story. A short, fast one around the harbour with friends from the club.",
     example: true,
   },
 ];
-
-// The cause you're raising money for. Change the numbers as donations come in.
-export const fundraiser = {
-  cause: "[Placeholder] Cause name",
-  blurb: "[Placeholder] One or two sentences on why this cause matters to you and where the money goes.",
-  goal: 5000,   // target amount
-  raised: 1850, // amount raised so far
-  currency: "AUD",
-  donateUrl: "https://example.com/donate", // [Placeholder] your fundraising page link
-};
 
 export type JournalPost = { date: string; title: string; distanceKm: number; excerpt: string; tags: string[] };
 export const journal: JournalPost[] = [
@@ -107,6 +96,6 @@ export const communityWall: { caption: string; photo?: string }[] = [
   { caption: "Finish line hugs" },
   { caption: "Trail day, muddy shoes" },
   { caption: "Coffee after the run" },
-  { caption: "Charity run volunteers" },
+  { caption: "Race day volunteers" },
   { caption: "First-timers club" },
 ];

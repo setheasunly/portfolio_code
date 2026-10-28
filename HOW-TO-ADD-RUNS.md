@@ -24,11 +24,10 @@ Open `data/runs.ts` and add an entry to the `journey` list (order doesn't matter
 - The "So far" totals (km, climb, races) are added up for you.
 - Delete any entry marked `example: true` once you have your own races (the NZ trail marathon is your real first one — fill in its `[Placeholder]` details and `time`).
 
-## Fundraising, journal and photo wall
+## Journal and photo wall
 
 Also in `data/runs.ts`:
 
-- `fundraiser` — `cause`, `blurb`, `goal`, `raised`, `currency` and `donateUrl` (the track bar fills to `raised / goal`).
 - `journal` — short posts (`date`, `title`, `km`, `excerpt`, `tags`).
 - `communityWall` — captions for the polaroid photos (add `photo` paths from `public/running/` when you have them).
 

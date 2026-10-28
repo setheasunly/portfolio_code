@@ -1,6 +1,6 @@
 "use client";
 // HeroArt.tsx: the hero illustration, split into layers that move at different speeds.
-// - Scrolling down: far things (sun, hills) move slowly, near things (bike, camera) faster.
+// - Scrolling down: far things (sun, hills) move slowly, near things (bike, camera) faster. The middle layer is a suitcase and a roll of film.
 // - Moving the mouse: the whole drawing tilts a little and each layer shifts by its "depth".
 import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
@@ -60,18 +60,38 @@ export default function HeroArt({ className }: { className?: string }) {
           <path d="M40 320 Q170 270 300 305 T510 300" {...stroke} opacity="0.25" />
           <path d="M260 410 C 300 360, 420 350, 500 330" {...stroke} opacity="0.5" />
         </Layer>
-        {/* middle: desk, laptop, mug */}
+        {/* middle: travel suitcase with stickers, and a film canister unrolling a strip of film */}
         <Layer depth={0.8} {...L}>
-          <path d="M20 250 L230 250 M40 250 L40 330 M210 250 L210 330" {...stroke} />
-          <g transform="translate(55 150)">
-            <rect x="10" y="0" width="120" height="80" rx="6" {...stroke} />
-            <path d="M0 100 L140 100 L130 82 L10 82 Z" {...stroke} />
-            <path d="M24 18 L50 18 M24 30 L70 30 M34 42 L90 42 M34 54 L66 54 M24 66 L44 66" {...stroke} opacity="0.7" />
-            <path d="M96 18 L112 18" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" />
+          {/* ground line */}
+          <path d="M20 330 L240 330" {...stroke} opacity="0.45" />
+          {/* suitcase */}
+          <g transform="translate(46 172)">
+            <path d="M34 22 L34 6 Q34 0 40 0 L66 0 Q72 0 72 6 L72 22" {...stroke} />
+            <rect x="0" y="22" width="106" height="128" rx="12" {...stroke} fill="var(--background)" />
+            <path d="M26 22 L26 150 M80 22 L80 150" {...stroke} opacity="0.55" />
+            <path d="M0 62 L106 62" {...stroke} opacity="0.35" />
+            {/* stickers: a sun, a mountain, a stamp */}
+            <circle cx="53" cy="96" r="11" fill="var(--accent)" opacity="0.22" />
+            <circle cx="53" cy="96" r="11" {...stroke} opacity="0.7" />
+            <path d="M8 132 L16 118 L22 126 L28 116 L36 132 Z" {...stroke} opacity="0.7" />
+            <rect x="84" y="112" width="14" height="18" rx="1.5" {...stroke} strokeDasharray="2 2" opacity="0.7" />
+            {/* wheels */}
+            <circle cx="16" cy="155" r="4" {...stroke} />
+            <circle cx="90" cy="155" r="4" {...stroke} />
           </g>
-          <g transform="translate(200 222)">
-            <path d="M0 0 L0 24 Q0 28 4 28 L16 28 Q20 28 20 24 L20 0 Z M20 6 Q28 6 28 13 Q28 20 20 20" {...stroke} />
-            <path d="M6 -6 Q2 -12 6 -18 M14 -6 Q10 -12 14 -18" {...stroke} opacity="0.5" />
+          {/* film canister + a strip of film lying on the ground (frames + sprocket holes) */}
+          <g transform="translate(166 262)">
+            {/* the strip of film curling up out of the canister: an outline band (dark stroke with a
+                lighter stroke on top), dashed sprocket holes and one accent frame */}
+            <path d="M30 14 C 58 8, 70 -34, 44 -46 C 24 -54, 12 -32, 26 -24" fill="none" stroke="currentColor" strokeWidth="14" strokeLinecap="butt" />
+            <path d="M30 14 C 58 8, 70 -34, 44 -46 C 24 -54, 12 -32, 26 -24" fill="none" stroke="var(--background)" strokeWidth="11" strokeLinecap="butt" />
+            <path d="M30 14 C 58 8, 70 -34, 44 -46 C 24 -54, 12 -32, 26 -24" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="5 7" opacity="0.55" />
+            <path d="M54 -6 C 58 -14, 60 -22, 58 -28" fill="none" stroke="var(--accent)" strokeWidth="5" opacity="0.5" />
+            {/* the canister */}
+            <rect x="0" y="6" width="34" height="58" rx="6" {...stroke} fill="var(--background)" />
+            <path d="M5 6 L5 1 L29 1 L29 6 M11 1 L11 -6 L23 -6 L23 1" {...stroke} fill="var(--background)" />
+            <path d="M0 18 L34 18 M0 52 L34 52" {...stroke} opacity="0.4" />
+            <path d="M8 30 L26 30 M8 38 L20 38" {...stroke} opacity="0.55" />
           </g>
         </Layer>
         {/* near: runner (also moves forward) */}

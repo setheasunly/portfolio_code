@@ -18,7 +18,7 @@ const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
 // Page title and description (used by Google and link previews).
 export const metadata: Metadata = {
   title: `${SITE_NAME} — Portfolio`,
-  description: `Personal portfolio of ${SITE_NAME}.`,
+  description: `${SITE_NAME}: photography, running and travel — the photos and stories from my hobbies.`,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

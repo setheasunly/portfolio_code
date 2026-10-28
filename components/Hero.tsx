@@ -17,8 +17,8 @@ export default function Hero() {
           <WordReveal as="h1" text="Sethea Sunly" accentLast delay={0.15}
             className="mt-4 font-serif text-6xl leading-[1.05] tracking-tight sm:text-7xl" />
           <p className="fade-in-delay mt-6 max-w-md text-lg leading-relaxed text-muted">
-            [Placeholder] ICT student, developer and runner — building things with code,
-            and chasing finish lines on foot and on two wheels.
+            [Placeholder] Photographer, runner and traveller — sharing the photos and
+            stories from my hobbies, on foot, on two wheels and behind the lens.
           </p>
           <div className="fade-in-delay mt-10 flex flex-wrap gap-4">
             {/* Magnetic: the buttons lean toward your mouse */}

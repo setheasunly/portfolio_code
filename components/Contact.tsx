@@ -5,8 +5,8 @@ import { SignatureLine } from "@/components/Illustrations";
 
 const contacts = [
   { label: "Email", href: "mailto:you@example.com", text: "you@example.com" }, // PLACEHOLDER
-  { label: "LinkedIn", href: "https://linkedin.com/in/your-profile", text: "linkedin.com/in/your-profile" }, // PLACEHOLDER
-  { label: "GitHub", href: "https://github.com/your-username", text: "github.com/your-username" }, // PLACEHOLDER
+  { label: "Instagram", href: "https://instagram.com/your-handle", text: "@your-handle" }, // PLACEHOLDER: where you share photos
+  { label: "Strava", href: "https://strava.com/athletes/your-id", text: "strava.com/athletes/your-id" }, // PLACEHOLDER: your runs and rides
 ];
 
 export default function Contact() {
@@ -24,7 +24,7 @@ export default function Contact() {
           {contacts.map((c) => (
             <li key={c.label}>
               {/* the arrow slides right on hover */}
-              <a href={c.href} className="group flex items-center justify-between py-5">
+              <a href={c.href} {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="group flex items-center justify-between py-5">
                 <span className="flex flex-col sm:flex-row sm:items-baseline sm:gap-6">
                   <span className="w-24 text-sm text-muted">{c.label}</span>
                   <span className="text-lg transition group-hover:text-accent">{c.text}</span>

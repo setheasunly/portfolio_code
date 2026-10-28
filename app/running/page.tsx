@@ -1,14 +1,13 @@
 // app/running/page.tsx: the /running page (DRAFT).
 //  1. Intro
 //  2. The journey: every race as one continuous elevation ribbon (scroll to run it)
-//  3. Fundraising, upcoming runs, run journal and the community photo wall
-// All the content comes from data/runs.ts and data/events.ts.
+//  3. Fundraising, the run journal and the community photo wall
+// All the content comes from data/runs.ts.
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WordReveal from "@/components/motion/WordReveal";
 import Reveal from "@/components/Reveal";
-import EventsList from "@/components/EventsList";
 import { SignatureLine } from "@/components/Illustrations";
 import JourneyHorizontal from "@/components/running/JourneyHorizontal";
 import JourneyVertical from "@/components/running/JourneyVertical";
@@ -17,7 +16,6 @@ import Fundraising from "@/components/running/Fundraising";
 import Journal from "@/components/running/Journal";
 import CommunityWall from "@/components/running/CommunityWall";
 import { journey } from "@/data/runs";
-import { events } from "@/data/events";
 import { SITE_NAME } from "@/data/site";
 
 export const metadata: Metadata = { title: `Running — ${SITE_NAME}` };
@@ -49,7 +47,7 @@ export default function RunningPage() {
             <div className="mt-8 grid gap-8 sm:grid-cols-[1.4fr_1fr]">
               <p className="max-w-xl text-lg leading-relaxed text-muted">
                 It started with a trail marathon in New Zealand in 2024. Every race since joins on to the same line —
-                so my running is one long path, climbing and falling with each event.
+                so my running is one long path, climbing and falling with each race.
               </p>
               {/* how to read the line */}
               <div className="flex items-start gap-4 text-sm text-muted">
@@ -70,11 +68,6 @@ export default function RunningPage() {
           {/* 3. Lower sections */}
           <div className="mx-auto max-w-6xl space-y-32 px-6 py-32">
             <Reveal><Fundraising /></Reveal>
-
-            <section id="upcoming" className="scroll-mt-24">
-              <SectionHead label="Run with me" title="Upcoming runs">All paces welcome — come along to one of these.</SectionHead>
-              <EventsList events={events} />
-            </section>
 
             <section>
               <SectionHead label="Run journal" title="Notes from the road">Short posts after big (and small) runs.</SectionHead>

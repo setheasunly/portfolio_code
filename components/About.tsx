@@ -1,13 +1,12 @@
-// About.tsx: your story plus illustrated cards for each part of your life.
+// About.tsx: your story plus illustrated cards for each of your hobbies.
 import Reveal from "@/components/Reveal";
 import WordReveal from "@/components/motion/WordReveal";
 import TiltCard from "@/components/motion/TiltCard";
-import { CodeIcon, RunIcon, BikeIcon, CameraIcon, TravelIcon, SignatureLine } from "@/components/Illustrations";
+import { RunIcon, BikeIcon, CameraIcon, TravelIcon, SignatureLine } from "@/components/Illustrations";
 
 // Edit the cards here — each has an icon, a title and a short placeholder text.
 const cards = [
-  { Icon: CodeIcon, title: "ICT & Software", text: "[Placeholder] What you build and study." },
-  { Icon: RunIcon, title: "Running", text: "[Placeholder] Marathons and the group runs I organise." },
+  { Icon: RunIcon, title: "Running", text: "[Placeholder] Trail marathons and the long road since NZ 2024." },
   { Icon: BikeIcon, title: "Cycling", text: "[Placeholder] Favourite rides and routes." },
   { Icon: CameraIcon, title: "Photography", text: "[Placeholder] My main hobby — digital and film." },
   { Icon: TravelIcon, title: "Travel", text: "[Placeholder] Places that shaped you." },
@@ -24,13 +23,13 @@ export default function About() {
             <SignatureLine className="mt-3 w-28 text-accent" />
           </div>
           <div className="space-y-5 text-lg leading-relaxed md:col-span-2">
-            <p>[Placeholder] Your background and education go here.</p>
-            <p className="text-muted">[Placeholder] Your interests in ICT, software development and project management, and where you want your career to go.</p>
+            <p>[Placeholder] A few lines about you and the hobbies that fill your weekends — the camera, the trails, the bike and the trips.</p>
+            <p className="text-muted">[Placeholder] Your personal journey so far: how each hobby started, what it has taught you, and why you love sharing the photos and stories here.</p>
           </div>
         </Reveal>
 
         {/* Illustrated cards: each one fades in a little after the previous (delay) */}
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map(({ Icon, title, text }, i) => (
             <Reveal key={title} delay={i * 100}>
               {/* TiltCard: the card tilts in 3D toward your mouse */}

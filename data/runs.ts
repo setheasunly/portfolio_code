@@ -2,7 +2,7 @@
 //
 //  journey      — the races you've finished, joined as ONE continuous elevation line.
 //                 Add a new race by copying a block. The order in the file doesn't matter:
-//                 the page sorts them by date. See HOW-TO-ADD-EVENTS.md.
+//                 the page sorts them by date. See HOW-TO-ADD-RUNS.md.
 //  fundraiser   — the cause you're running for (progress bar + donate button).
 //  journal      — short run diary posts.
 //  communityWall — captions for the polaroid photo wall.
@@ -68,7 +68,7 @@ export const journey: JourneyRun[] = [
     distanceKm: 10,
     elevationM: 120,
     time: "48:55",
-    story: "Placeholder story. A short one for a good cause — the first run I organised for others.",
+    story: "Placeholder story. A short one for a good cause, with friends from the club.",
     example: true,
   },
 ];

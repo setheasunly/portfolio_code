@@ -83,8 +83,11 @@ export default function GalleryRoomScene({ className }: { className?: string }) 
       <path d="M484 344 V352 H716 V344 M500 352 V376 M700 352 V376 M520 352 V368 M680 352 V368" {...l} />
 
       {/* gallery sign under the centre picture */}
-      <rect x="528" y="252" width="144" height="20" fill="#fffdf8" stroke={INK} strokeWidth="0.8" />
-      <text x="600" y="265.5" textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontSize="7.5" letterSpacing="2.6" fill={INK} opacity="0.75">THE GALLERY · PHOTOGRAPHY</text>
+      {/* textLength squeezes/stretches the words to exactly 136 units, so they always sit inside
+          the 160-wide sign whatever font or screen size the visitor has */}
+      <rect x="520" y="252" width="160" height="20" fill="#fffdf8" stroke={INK} strokeWidth="0.8" />
+      <text x="600" y="262.4" textAnchor="middle" dominantBaseline="middle" textLength="136" lengthAdjust="spacingAndGlyphs"
+        fontFamily="var(--font-inter), sans-serif" fontSize="7" letterSpacing="2" fill={INK} opacity="0.75">THE GALLERY · PHOTOGRAPHY</text>
 
       {/* a visitor with a camera, looking at the art */}
       <g transform="translate(842 214)">

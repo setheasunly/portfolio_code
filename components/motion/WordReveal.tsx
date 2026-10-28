@@ -19,8 +19,8 @@ export default function WordReveal({ text, as = "h2", className = "", accentLast
       initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.6 }}
       transition={{ staggerChildren: 0.08, delayChildren: delay }}>
       {words.map((w, i) => (
-        // the outer span hides the word until it slides up into place
-        <span key={i} aria-hidden className="-mb-[0.15em] inline-block overflow-hidden pb-[0.15em] align-bottom">
+        // the outer span hides the word until it slides up into place (side padding keeps italic letters like the "y" from being clipped)
+        <span key={i} aria-hidden className="-mx-[0.12em] -mb-[0.15em] inline-block overflow-hidden px-[0.12em] pb-[0.15em] align-bottom">
           <motion.span
             className={`inline-block ${accentLast && i === words.length - 1 ? "italic text-accent" : ""}`}
             variants={{ hidden: { y: "110%", opacity: 0 }, show: { y: "0%", opacity: 1 } }}

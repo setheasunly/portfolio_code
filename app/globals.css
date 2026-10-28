@@ -65,3 +65,37 @@ body {
   .reveal { opacity: 1; transform: none; transition: none; }
   .float, .float-slow, .fade-in, .fade-in-delay { animation: none; }
 }
+
+/* ---------- Photography gallery ---------- */
+/* plaster wall with a soft wash of light from above */
+.gallery-wall {
+  background:
+    radial-gradient(90% 60% at 50% -5%, rgba(255, 250, 242, 0.9), rgba(255, 250, 242, 0) 70%),
+    linear-gradient(#ebe6de, #e6e0d6);
+}
+/* skirting line + floorboards converging into the distance */
+.gallery-floor {
+  background:
+    linear-gradient(rgba(28, 28, 28, 0.18), rgba(28, 28, 28, 0.18)) top / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(28, 28, 28, 0.07) 0 1px, transparent 1px 70px),
+    linear-gradient(#e7e0d5, #ddd4c7);
+  transform: perspective(300px) rotateX(38deg);
+  transform-origin: bottom;
+}
+/* spotlight cone above each frame */
+.spot-cone {
+  background: radial-gradient(60% 100% at 50% 0%, rgba(255, 252, 245, 1) 0%, rgba(255, 246, 232, 0.75) 40%, rgba(255, 240, 222, 0) 80%);
+  clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%);
+  filter: blur(8px);
+}
+/* picture frames: thin black for digital, warm oak for film */
+.frame-black { padding: 10px; background: #1f1d1b; box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 24px 40px -22px rgba(0,0,0,0.55), 0 4px 10px -4px rgba(0,0,0,0.25); }
+.frame-oak { padding: 12px; background: linear-gradient(135deg, #c79a6e, #a87a52 45%, #c49568); box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 24px 40px -22px rgba(60,35,15,0.55), 0 4px 10px -4px rgba(0,0,0,0.25); }
+.group:hover .frame-black, .group:hover .frame-oak { box-shadow: 0 34px 50px -24px rgba(0,0,0,0.6), 0 6px 14px -6px rgba(0,0,0,0.3); }
+
+/* short "iris opening" when you visit the gallery directly */
+@keyframes irisIn { from { clip-path: circle(0% at 50% 30%); } to { clip-path: circle(150% at 50% 30%); } }
+.iris-intro { animation: irisIn 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .iris-intro { animation: none; }
+}

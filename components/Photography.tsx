@@ -1,5 +1,6 @@
 // Photography.tsx: homepage teaser — a few featured photos and a link to all albums.
 import Link from "next/link";
+import LensLink from "@/components/lens/LensLink";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import WordReveal from "@/components/motion/WordReveal";
@@ -47,9 +48,9 @@ export default async function Photography() {
 
         <Reveal className="mt-12">
           <Magnetic>
-            <Link href="/photography" className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 px-6 py-3 text-sm transition-colors hover:border-foreground">
+            <LensLink href="/photography" className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 px-6 py-3 text-sm transition-colors hover:border-foreground">
               View all albums <span className="transition group-hover:translate-x-1">→</span>
-            </Link>
+            </LensLink>
           </Magnetic>
         </Reveal>
       </div>

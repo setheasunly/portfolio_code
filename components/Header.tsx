@@ -4,6 +4,7 @@
 // - It turns frosted once you scroll, hides when you scroll down, and comes back when you scroll up.
 import { useState } from "react";
 import Link from "next/link";
+import LensLink from "@/components/lens/LensLink";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { SITE_NAME } from "@/data/site";
 
@@ -48,9 +49,13 @@ export default function Header() {
           {links.map((link) => (
             <li key={link.href}>
               {/* the after: line grows underneath on hover */}
-              <Link href={link.href} className="relative transition-colors hover:text-foreground after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all hover:after:w-full">
-                {link.label}
-              </Link>
+              {(() => {
+                const cls = "relative transition-colors hover:text-foreground after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all hover:after:w-full";
+                // The Photography link plays the "through the lens" transition
+                return link.href === "/photography"
+                  ? <LensLink href={link.href} className={cls}>{link.label}</LensLink>
+                  : <Link href={link.href} className={cls}>{link.label}</Link>;
+              })()}
             </li>
           ))}
         </ul>

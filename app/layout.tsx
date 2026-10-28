@@ -8,6 +8,7 @@ import MotionProvider from "@/components/motion/MotionProvider";
 import SmoothScroll from "@/components/motion/SmoothScroll";
 import ScrollProgress from "@/components/motion/ScrollProgress";
 import Cursor from "@/components/motion/Cursor";
+import LensProvider from "@/components/lens/LensProvider";
 
 // next/font downloads Inter at build time and serves it from your own site.
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -29,7 +30,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SmoothScroll />
           <ScrollProgress />
           <Cursor />
-          {children}
+          {/* LensProvider plays the "enter through the camera lens" transition */}
+          <LensProvider>{children}</LensProvider>
         </MotionProvider>
       </body>
     </html>

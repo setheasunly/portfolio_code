@@ -107,3 +107,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .run-intro { animation: none; }
 }
+
+/* FPV video: the blinking REC dot and spinning props (switched off for reduced motion) */
+@keyframes recBlink { 0%,60% { opacity: 1; } 61%,100% { opacity: 0.15; } }
+.rec-dot { animation: recBlink 1.4s steps(1) infinite; }
+@keyframes propSpin { to { transform: rotate(360deg); } }
+.prop-spin { transform-box: fill-box; transform-origin: center; animation: propSpin 0.9s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .rec-dot, .prop-spin { animation: none; }
+}

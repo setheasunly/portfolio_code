@@ -23,7 +23,7 @@ export default function GalleryFrame({ album, index }: { album: AlbumSummary; in
       {/* spotlight: the fixture and a soft cone of light that brightens on hover */}
       <span aria-hidden className="absolute top-0 left-1/2 -translate-x-1/2">
         <svg width="34" height="26" viewBox="0 0 34 26" className="text-foreground">
-          <path d="M17 0 V6 M8 6 H26 L22 20 H12 Z" fill="#3a3732" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+          <path d="M17 0 V6 M8 6 H26 L22 20 H12 Z" fill="var(--gr-lamp)" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
           <path d="M13 20 H21" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" />
         </svg>
       </span>

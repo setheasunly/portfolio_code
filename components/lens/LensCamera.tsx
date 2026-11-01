@@ -9,9 +9,9 @@
 // The opening in the iris is a real hole: you see the next page through it.
 import { motion, useTransform, type MotionValue } from "motion/react";
 
-const INK = "#e4ddcf";
+const INK = "var(--ink)";
 const ACCENT = "var(--accent)";
-const BODY = "#2b2926";
+const BODY = "var(--cam-body)";
 const line = { fill: "none", stroke: INK, strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 
 const GLASS_R = 80; // radius of the glass / iris
@@ -116,9 +116,9 @@ export default function LensCamera({ open, focus, flare }: { open: MotionValue<n
         <rect x="-282" y="-104" width="564" height="228" rx="6" fill="url(#lc-leather)" />
         <path d="M-290 -104 L290 -104 M-290 124 L290 124" {...line} opacity="0.55" />
         {/* viewfinder + rangefinder windows with reflections */}
-        <rect x="-256" y="-140" width="78" height="30" rx="6" {...line} fill="#36332f" />
+        <rect x="-256" y="-140" width="78" height="30" rx="6" {...line} fill="var(--cam-1)" />
         <path d="M-248 -118 L-232 -134" stroke="#fff" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
-        <rect x="186" y="-140" width="44" height="30" rx="5" {...line} fill="#36332f" />
+        <rect x="186" y="-140" width="44" height="30" rx="5" {...line} fill="var(--cam-1)" />
         <circle cx="208" cy="-125" r="8" {...line} opacity="0.5" />
         {/* brand */}
         <text x="-10" y="-120" textAnchor="middle" fontFamily="var(--font-serif), serif" fontSize="15" letterSpacing="7" fill={INK} opacity="0.75">SUNLY</text>
@@ -135,12 +135,12 @@ export default function LensCamera({ open, focus, flare }: { open: MotionValue<n
 
       {/* 3. Lens barrel */}
       <circle r="150" {...line} fill={BODY} />
-      <circle r="142" {...line} fill="#2f2c29" />
+      <circle r="142" {...line} fill="var(--cam-2)" />
       {/* focus ring (turns) */}
       <motion.g style={{ transform: focusRotate }}>
-        <circle r="135" {...line} fill="#26241f" />
+        <circle r="135" {...line} fill="var(--cam-3)" />
         <path d={knurl} stroke={INK} strokeWidth="1.1" opacity="0.45" />
-        <circle r="117" {...line} fill="#33302c" />
+        <circle r="117" {...line} fill="var(--cam-4)" />
         <path d={ticks} stroke={INK} strokeWidth="1" opacity="0.6" />
         <path id="lc-scale" d="M-98 0 A98 98 0 0 1 98 0" fill="none" />
         <text fontFamily="var(--font-inter), sans-serif" fontSize="8.5" letterSpacing="1.5" fill={INK} opacity="0.7">
@@ -150,7 +150,7 @@ export default function LensCamera({ open, focus, flare }: { open: MotionValue<n
       {/* index mark */}
       <path d="M0 -146 L-5 -156 L5 -156 Z" fill={ACCENT} />
       {/* front ring with engraving */}
-      <circle r="100" {...line} fill="#2b2926" />
+      <circle r="100" {...line} fill="var(--cam-body)" />
       <circle r="94" fill="none" stroke={INK} strokeWidth="0.8" opacity="0.4" />
       <path id="lc-name" d="M-87 0 A87 87 0 0 1 87 0" fill="none" />
       <text fontFamily="var(--font-inter), sans-serif" fontSize="7.5" letterSpacing="2.4" fill={INK} opacity="0.75">

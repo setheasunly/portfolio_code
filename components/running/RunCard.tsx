@@ -6,7 +6,7 @@ export default function RunCard({ run, compact = false }: { run: JourneyRun; com
   return (
     <div className={`flex gap-4 glass-strong rounded-2xl p-4 ${compact ? "flex-col" : ""}`}>
       {/* photo — a placeholder until you add `photo` in data/runs.ts */}
-      <div className={`relative shrink-0 overflow-hidden rounded-lg bg-[repeating-linear-gradient(135deg,#2c2a27_0_8px,#26241f_8px_16px)] ${compact ? "h-36 w-full" : "h-28 w-28"}`}>
+      <div className={`relative shrink-0 overflow-hidden rounded-lg bg-[repeating-linear-gradient(135deg,var(--stripe-a)_0_8px,var(--stripe-b)_8px_16px)] ${compact ? "h-36 w-full" : "h-28 w-28"}`}>
         {run.photo ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={run.photo} alt={run.name} className="h-full w-full object-cover" />

@@ -44,7 +44,7 @@ export default function RaceStart({ step, lanes, go, wipe, opacity }: { step: nu
           <motion.text key={n} x={110 - i * 6} y={636 + i * 58} fontSize={22} fontFamily="var(--font-inter), sans-serif" fill="var(--ink)" style={{ opacity: lanes }}>{n}</motion.text>
         ))}
         {/* the journey line: a folded ribbon that bolts away after GO */}
-        <motion.path d={toD(10)} fill="none" stroke="#4a463f" strokeWidth={20} strokeLinejoin="miter" opacity={0.92} style={{ pathLength: go }} />
+        <motion.path d={toD(10)} fill="none" stroke="var(--race-band)" strokeWidth={20} strokeLinejoin="miter" opacity={0.92} style={{ pathLength: go }} />
         <motion.path d={toD(0)} fill="none" stroke="var(--ink)" strokeWidth={2} style={{ pathLength: go }} />
         <motion.circle r={11} cy={0} fill="var(--accent)" stroke="var(--background)" strokeWidth={3} style={{ x: runnerX, y: runnerY, opacity: runnerOpacity }} />
       </svg>

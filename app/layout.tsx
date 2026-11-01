@@ -9,6 +9,7 @@ import SmoothScroll from "@/components/motion/SmoothScroll";
 import ScrollProgress from "@/components/motion/ScrollProgress";
 import Cursor from "@/components/motion/Cursor";
 import LensProvider from "@/components/lens/LensProvider";
+import { themeInitScript } from "@/components/theme/theme";
 
 // next/font downloads Inter at build time and serves it from your own site.
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -23,12 +24,22 @@ export const metadata: Metadata = {
   description: `${SITE_NAME}: photography, running and travel — the photos and stories from my hobbies.`,
 };
 
-// Dark browser chrome on phones, matching the page.
-export const viewport: Viewport = { themeColor: "#1d1c1a" };
+// Browser chrome colour on phones, matching the page (updated live by the theme switch).
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#1d1c1a" },
+    { media: "(prefers-color-scheme: light)", color: "#f3eee5" },
+  ],
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    // suppressHydrationWarning: the inline script below sets data-theme before React loads.
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        {/* Pick light/dark before the first paint (saved choice, else the system setting) */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className={`${inter.variable} ${fraunces.variable} ${mono.variable} grain antialiased`}>
         {/* Site-wide motion: smooth scrolling, the top progress bar and the mouse follower */}
         <MotionProvider>

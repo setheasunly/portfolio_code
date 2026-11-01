@@ -51,7 +51,7 @@ export default function RunningPage() {
               <div className="flex items-start gap-4 text-sm text-muted">
                 <svg viewBox="0 0 80 40" className="w-20 shrink-0" aria-hidden>
                   <path d="M0 30 L20 30 L36 12 L50 22 L66 6 L80 14" fill="none" stroke="var(--ink)" strokeWidth="2" />
-                  <path d="M0 30 L20 30 L20 36 L0 36Z M36 12 L50 22 L50 28 L36 18Z" fill="#57524a" />
+                  <path d="M0 30 L20 30 L20 36 L0 36Z M36 12 L50 22 L50 28 L36 18Z" fill="var(--rb-flat)" />
                   <circle cx="66" cy="6" r="3" fill="var(--accent)" />
                 </svg>
                 <p><span className="text-foreground">Height</span> = metres climbed.<br /><span className="text-foreground">Big number</span> = race distance.<br />Scroll to run it ↓</p>

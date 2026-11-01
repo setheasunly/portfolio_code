@@ -10,6 +10,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScro
 import LensLink from "@/components/lens/LensLink";
 import RunLink from "@/components/running/RunLink";
 import { SITE_NAME } from "@/data/site";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 const links = [
   { href: "/#home", label: "Home" },
@@ -64,28 +65,33 @@ export default function Header() {
         </Link>
 
         {/* Desktop links: a hairline draws in underneath on hover */}
-        <ul className="hidden items-center gap-7 font-mono text-[11px] uppercase tracking-[0.2em] text-muted md:flex">
-          {links.map((l) => (
-            <li key={l.href}>
-              <NavLink href={l.href} current={isCurrent(l.href)} className="link-line transition-colors hover:text-foreground">{l.label}</NavLink>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-2 md:gap-6">
+          <ul className="hidden items-center gap-7 font-mono text-[11px] uppercase tracking-[0.2em] text-muted md:flex">
+            {links.map((l) => (
+              <li key={l.href}>
+                <NavLink href={l.href} current={isCurrent(l.href)} className="link-line transition-colors hover:text-foreground">{l.label}</NavLink>
+              </li>
+            ))}
+          </ul>
 
-        {/* Phone: menu button */}
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-          className="btn-glass flex h-10 w-10 items-center justify-center md:hidden"
-        >
-          <span className="relative block h-3 w-4">
-            <span className={`absolute left-0 h-px w-4 bg-current transition-transform duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`} />
-            <span className={`absolute left-0 h-px w-4 bg-current transition-transform duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
-          </span>
-        </button>
+          {/* Light / dark switch (stays in the header on phones too) */}
+          <ThemeToggle />
+
+          {/* Phone: menu button */}
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+            className="btn-glass flex h-10 w-10 items-center justify-center md:hidden"
+          >
+            <span className="relative block h-3 w-4">
+              <span className={`absolute left-0 h-px w-4 bg-current transition-transform duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`} />
+              <span className={`absolute left-0 h-px w-4 bg-current transition-transform duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
+            </span>
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>

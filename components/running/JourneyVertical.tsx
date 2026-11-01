@@ -42,7 +42,7 @@ export default function JourneyVertical({ runs }: { runs: JourneyRun[] }) {
   // folded faces: each piece gets a side face, dark when it moves left, light when it moves right
   const faces = pts.slice(1).map((b, i) => {
     const a = pts[i];
-    const fill = b.x < a.x - 1 ? "#121110" : b.x > a.x + 1 ? "#cfc6b6" : "#57524a";
+    const fill = b.x < a.x - 1 ? "var(--rb-shadow)" : b.x > a.x + 1 ? "var(--rb-lit)" : "var(--rb-flat)";
     return { d: `M${a.x} ${a.y} L${b.x} ${b.y} L${b.x + 12} ${b.y} L${a.x + 12} ${a.y} Z`, fill };
   });
 

@@ -42,7 +42,7 @@ export default function JourneyVertical({ runs }: { runs: JourneyRun[] }) {
   // folded faces: each piece gets a side face, dark when it moves left, light when it moves right
   const faces = pts.slice(1).map((b, i) => {
     const a = pts[i];
-    const fill = b.x < a.x - 1 ? "#2b2927" : b.x > a.x + 1 ? "#e4e0d9" : "#6f6b66";
+    const fill = b.x < a.x - 1 ? "#121110" : b.x > a.x + 1 ? "#cfc6b6" : "#57524a";
     return { d: `M${a.x} ${a.y} L${b.x} ${b.y} L${b.x + 12} ${b.y} L${a.x + 12} ${a.y} Z`, fill };
   });
 
@@ -50,10 +50,10 @@ export default function JourneyVertical({ runs }: { runs: JourneyRun[] }) {
     <section aria-label="My running journey" className="relative px-5 md:hidden">
       <div ref={ref} className="relative pb-10">
         <svg width={W} height={total} viewBox={`0 0 ${W} ${total}`} className="absolute left-0 top-0 overflow-visible" aria-hidden>
-          <path d={d} fill="none" stroke="#1c1c1c" strokeWidth={1} strokeDasharray="2 6" opacity={0.25} />
+          <path d={d} fill="none" stroke="var(--ink)" strokeWidth={1} strokeDasharray="2 6" opacity={0.25} />
           {faces.map((f, i) => <path key={i} d={f.d} fill={f.fill} stroke={f.fill} strokeWidth={0.5} opacity={0.95} />)}
-          <motion.path d={d} fill="none" stroke="#1c1c1c" strokeWidth={2.2} style={{ pathLength: scrollYProgress }} />
-          {nodes.map((n, i) => <circle key={i} cx={n.x} cy={n.y} r={6} fill={i === 0 ? "var(--accent)" : "#1c1c1c"} stroke="#fafaf7" strokeWidth={2} />)}
+          <motion.path d={d} fill="none" stroke="var(--ink)" strokeWidth={2.2} style={{ pathLength: scrollYProgress }} />
+          {nodes.map((n, i) => <circle key={i} cx={n.x} cy={n.y} r={6} fill={i === 0 ? "var(--accent)" : "var(--ink)"} stroke="var(--background)" strokeWidth={2} />)}
         </svg>
         {/* the race rows, in normal page flow (so long text never overlaps) */}
         {sorted.map((r, i) => (

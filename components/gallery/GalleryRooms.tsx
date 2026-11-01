@@ -20,7 +20,7 @@ export default function GalleryRooms({ albums }: { albums: AlbumSummary[] }) {
     <>
       {/* Room switcher (styled like gallery signage) */}
       <div className="flex justify-center">
-      <div role="tablist" aria-label="Choose a room" className="relative inline-flex flex-wrap gap-1 rounded-full border border-line bg-white/60 p-1 backdrop-blur">
+      <div role="tablist" aria-label="Choose a room" className="relative inline-flex flex-wrap gap-1 glass-chip rounded-full p-1">
         {tabs.map((t) => (
           <button key={t.id} role="tab" aria-selected={tab === t.id} onClick={() => setTab(t.id)}
             className={`relative rounded-full px-4 py-2 text-sm transition-colors sm:px-5 ${tab === t.id ? "text-background" : "text-muted hover:text-foreground"}`}>
@@ -41,7 +41,7 @@ export default function GalleryRooms({ albums }: { albums: AlbumSummary[] }) {
                 {/* room sign */}
                 <div className="flex flex-wrap items-end justify-between gap-4 px-1">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.3em] text-accent">{room.numeral}</p>
+                    <p className="eyebrow !text-accent">{room.numeral}</p>
                     <h2 className="mt-2 font-serif text-4xl">{room.name}</h2>
                   </div>
                   <p className="max-w-xs text-sm text-muted">{room.note} <span className="whitespace-nowrap">({list.length} {list.length === 1 ? "album" : "albums"})</span></p>

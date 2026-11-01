@@ -11,8 +11,8 @@ export default function JourneyTeaser() {
   const climb = journey.reduce((s, r) => s + r.elevationM, 0);
   const first = j.nodes[0]?.run;
   return (
-    <RunLink href="/running" className="group block rounded-3xl border border-line bg-white/50 p-7 transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.2)]">
-      <p className="text-xs uppercase tracking-[0.3em] text-muted">My running journey</p>
+    <RunLink href="/running" className="group block glass rounded-3xl p-7 transition duration-300 hover:-translate-y-1">
+      <p className="eyebrow">My running journey</p>
       <p className="mt-2 font-serif text-2xl leading-snug">Every race I&apos;ve run, joined as one line.</p>
 
       {/* mini elevation ribbon: the big numbers are race distances */}
@@ -21,10 +21,10 @@ export default function JourneyTeaser() {
         <Ribbon pts={j.pts} />
         {j.nodes.map((n, i) => (
           <g key={n.run.date + n.run.name}>
-            <circle cx={n.x} cy={n.y} r={9} fill={i === 0 ? "var(--accent)" : "#1c1c1c"} />
+            <circle cx={n.x} cy={n.y} r={9} fill={i === 0 ? "var(--accent)" : "var(--ink)"} />
             <text x={n.x} y={n.y - 34} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontWeight={600} fontSize={52}
-              fill={i === 0 ? "var(--accent)" : "#1c1c1c"}>{n.run.distanceKm}</text>
-            <text x={n.x} y={H - 10} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontSize={30} fill="#77716a">{n.run.date.slice(0, 4)}</text>
+              fill={i === 0 ? "var(--accent)" : "var(--ink)"}>{n.run.distanceKm}</text>
+            <text x={n.x} y={H - 10} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontSize={30} fill="var(--muted)">{n.run.date.slice(0, 4)}</text>
           </g>
         ))}
       </svg>

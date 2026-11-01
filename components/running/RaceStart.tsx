@@ -34,19 +34,19 @@ export default function RaceStart({ step, lanes, go, wipe, opacity }: { step: nu
       <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full">
         {/* lane lines in perspective, like looking down a running track */}
         {[0, 1, 2, 3, 4, 5].map((i) => (
-          <motion.path key={i} d={`M0 ${600 + i * 52} L1440 ${560 + i * 64}`} fill="none" stroke="#1c1c1c" strokeWidth={1.2} opacity={0.18 + i * 0.04} style={{ pathLength: lanes }} />
+          <motion.path key={i} d={`M0 ${600 + i * 52} L1440 ${560 + i * 64}`} fill="none" stroke="var(--ink)" strokeWidth={1.2} opacity={0.18 + i * 0.04} style={{ pathLength: lanes }} />
         ))}
         {/* the start line */}
-        <motion.path d="M180 580 L150 920" stroke="#1c1c1c" strokeWidth={10} style={{ pathLength: lanes }} />
+        <motion.path d="M180 580 L150 920" stroke="var(--ink)" strokeWidth={10} style={{ pathLength: lanes }} />
         <motion.path d="M200 578 L172 920" stroke="var(--accent)" strokeWidth={3} style={{ pathLength: lanes }} />
         {/* lane numbers */}
         {[1, 2, 3, 4, 5].map((n, i) => (
-          <motion.text key={n} x={110 - i * 6} y={636 + i * 58} fontSize={22} fontFamily="var(--font-inter), sans-serif" fill="#1c1c1c" style={{ opacity: lanes }}>{n}</motion.text>
+          <motion.text key={n} x={110 - i * 6} y={636 + i * 58} fontSize={22} fontFamily="var(--font-inter), sans-serif" fill="var(--ink)" style={{ opacity: lanes }}>{n}</motion.text>
         ))}
         {/* the journey line: a folded ribbon that bolts away after GO */}
-        <motion.path d={toD(10)} fill="none" stroke="#2a2826" strokeWidth={20} strokeLinejoin="miter" opacity={0.92} style={{ pathLength: go }} />
-        <motion.path d={toD(0)} fill="none" stroke="#1c1c1c" strokeWidth={2} style={{ pathLength: go }} />
-        <motion.circle r={11} cy={0} fill="var(--accent)" stroke="#fff" strokeWidth={3} style={{ x: runnerX, y: runnerY, opacity: runnerOpacity }} />
+        <motion.path d={toD(10)} fill="none" stroke="#4a463f" strokeWidth={20} strokeLinejoin="miter" opacity={0.92} style={{ pathLength: go }} />
+        <motion.path d={toD(0)} fill="none" stroke="var(--ink)" strokeWidth={2} style={{ pathLength: go }} />
+        <motion.circle r={11} cy={0} fill="var(--accent)" stroke="var(--background)" strokeWidth={3} style={{ x: runnerX, y: runnerY, opacity: runnerOpacity }} />
       </svg>
       {/* the big words */}
       <div className="absolute inset-x-0 top-[26%] flex justify-center px-6">

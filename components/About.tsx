@@ -14,11 +14,11 @@ const cards = [
 
 export default function About() {
   return (
-    <section id="about" className="relative scroll-mt-20 border-t border-line">
-      <div className="mx-auto max-w-6xl px-6 py-28">
+    <section id="about" className="relative scroll-mt-20">
+      <div className="mx-auto max-w-6xl px-6 py-32">
         <Reveal className="grid gap-10 md:grid-cols-3">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-muted">About Me</p>
+            <p className="eyebrow">About Me</p>
             <WordReveal text="A little about me" className="mt-3 font-serif text-4xl" />
             <SignatureLine className="mt-3 w-28 text-accent" />
           </div>
@@ -34,7 +34,7 @@ export default function About() {
             <Reveal key={title} delay={i * 100}>
               {/* TiltCard: the card tilts in 3D toward your mouse */}
               <TiltCard className="h-full">
-                <div className="group h-full rounded-2xl border border-line bg-white/50 p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.15)]">
+                <div className="group h-full glass rounded-3xl p-6 transition duration-300 hover:-translate-y-1">
                   <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 text-foreground/80 transition group-hover:bg-accent/20 group-hover:text-accent">
                     <Icon className="h-8 w-8" />
                   </div>

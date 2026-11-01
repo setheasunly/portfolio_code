@@ -22,7 +22,7 @@ export const metadata: Metadata = { title: `Running — ${SITE_NAME}` };
 function SectionHead({ label, title, children }: { label: string; title: string; children?: React.ReactNode }) {
   return (
     <div className="mb-10">
-      <p className="text-xs uppercase tracking-[0.3em] text-accent">{label}</p>
+      <p className="eyebrow !text-accent">{label}</p>
       <WordReveal as="h2" text={title} className="mt-3 font-serif text-4xl sm:text-5xl" />
       {children && <p className="mt-4 max-w-xl leading-relaxed text-muted">{children}</p>}
     </div>
@@ -39,7 +39,7 @@ export default function RunningPage() {
           {/* 1. Intro */}
           <section className="relative mx-auto max-w-6xl px-6 pb-10 pt-36">
             <div aria-hidden className="pointer-events-none absolute -right-24 top-10 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
-            <p className="text-xs uppercase tracking-[0.3em] text-muted">Running · Draft</p>
+            <p className="eyebrow">Running · Draft</p>
             <WordReveal as="h1" text="One line, every finish" accentLast className="mt-3 max-w-3xl font-serif text-5xl leading-[1.05] sm:text-7xl" />
             <SignatureLine className="mt-4 w-28 text-accent" />
             <div className="mt-8 grid gap-8 sm:grid-cols-[1.4fr_1fr]">
@@ -50,8 +50,8 @@ export default function RunningPage() {
               {/* how to read the line */}
               <div className="flex items-start gap-4 text-sm text-muted">
                 <svg viewBox="0 0 80 40" className="w-20 shrink-0" aria-hidden>
-                  <path d="M0 30 L20 30 L36 12 L50 22 L66 6 L80 14" fill="none" stroke="#1c1c1c" strokeWidth="2" />
-                  <path d="M0 30 L20 30 L20 36 L0 36Z M36 12 L50 22 L50 28 L36 18Z" fill="#2b2927" />
+                  <path d="M0 30 L20 30 L36 12 L50 22 L66 6 L80 14" fill="none" stroke="var(--ink)" strokeWidth="2" />
+                  <path d="M0 30 L20 30 L20 36 L0 36Z M36 12 L50 22 L50 28 L36 18Z" fill="#57524a" />
                   <circle cx="66" cy="6" r="3" fill="var(--accent)" />
                 </svg>
                 <p><span className="text-foreground">Height</span> = metres climbed.<br /><span className="text-foreground">Big number</span> = race distance.<br />Scroll to run it ↓</p>

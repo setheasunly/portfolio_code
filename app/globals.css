@@ -1,24 +1,46 @@
-/* globals.css: site-wide styles. Loads Tailwind and defines our colour palette. */
+/* globals.css: site-wide styles. Loads Tailwind and defines our colour palette.
+   Look: "Darkroom" — warm charcoal, bone-white type, one amber accent, film grain
+   and frosted liquid-glass panels (the same design language as the fadeimages shop). */
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf7; /* off-white page background */
-  --foreground: #1c1c1c; /* muted black text */
-  --muted: #6b6b6b;      /* soft grey for secondary text */
-  --line: #e6e6e1;       /* subtle divider lines */
-  --accent: #c8875a;     /* one subtle warm accent (terracotta) */
+  color-scheme: dark;
+  --background: #1d1c1a; /* warm charcoal page */
+  --surface: #262522;    /* slightly lifted panels */
+  --foreground: #ece5d8; /* bone-white text */
+  --muted: #a39c8f;      /* soft grey-beige for secondary text */
+  --line: #3a3732;       /* hairline dividers */
+  --accent: #d99c6c;     /* warm amber, like late light on film */
+  --accent-soft: #ebc29c;
+  --ink: #e4ddcf;        /* line drawings (strokes on the dark page) */
+  --paper: #ebe4d6;      /* photo-print borders and labels */
+  --shade: #141311;      /* deepest shadow */
+  /* liquid glass */
+  --glass-rgb: 38 37 34;
+  --glass-sheen: 255 248 232;
+  --glass-a: 0.52;
+  --shadow-rgb: 10 9 8;
+  --shadow-a: 0.6;
 }
 
 /* Makes the colours above usable as Tailwind classes, e.g. bg-background, text-muted */
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-shade: var(--shade);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
 }
+
+::selection { background: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--foreground); }
 
 html { scroll-behavior: smooth; }
 
@@ -47,12 +69,12 @@ body {
 
 /* Film-grain texture over the whole page (an SVG noise pattern) */
 .grain::before {
-  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.06;
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.08; mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Film photos: a white "print" border, a slight warm tone */
-.film-frame { background: #fffdf8; padding: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 10px 24px -14px rgba(0,0,0,0.25); }
+.film-frame { background: var(--paper); padding: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 16px 34px -16px rgba(0,0,0,0.7); }
 .film-frame img { filter: sepia(0.12) contrast(1.03); }
 /* Film grain laid over film photos */
 .film-grain {
@@ -70,27 +92,27 @@ body {
 /* plaster wall with a soft wash of light from above */
 .gallery-wall {
   background:
-    radial-gradient(90% 60% at 50% -5%, rgba(255, 250, 242, 0.9), rgba(255, 250, 242, 0) 70%),
-    linear-gradient(#ebe6de, #e6e0d6);
+    radial-gradient(90% 60% at 50% -5%, rgba(255, 226, 190, 0.12), rgba(255, 226, 190, 0) 70%),
+    linear-gradient(#2a2825, #24221f);
 }
 /* skirting line + floorboards converging into the distance */
 .gallery-floor {
   background:
-    linear-gradient(rgba(28, 28, 28, 0.18), rgba(28, 28, 28, 0.18)) top / 100% 1px no-repeat,
-    repeating-linear-gradient(90deg, rgba(28, 28, 28, 0.07) 0 1px, transparent 1px 70px),
-    linear-gradient(#e7e0d5, #ddd4c7);
+    linear-gradient(rgba(236, 229, 216, 0.16), rgba(236, 229, 216, 0.16)) top / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(236, 229, 216, 0.05) 0 1px, transparent 1px 70px),
+    linear-gradient(#22201d, #1b1a17);
   transform: perspective(300px) rotateX(38deg);
   transform-origin: bottom;
 }
 /* spotlight cone above each frame */
 .spot-cone {
-  background: radial-gradient(60% 100% at 50% 0%, rgba(255, 252, 245, 1) 0%, rgba(255, 246, 232, 0.75) 40%, rgba(255, 240, 222, 0) 80%);
+  background: radial-gradient(60% 100% at 50% 0%, rgba(255, 228, 192, 0.32) 0%, rgba(255, 220, 180, 0.14) 40%, rgba(255, 214, 170, 0) 80%);
   clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%);
   filter: blur(8px);
 }
 /* picture frames: thin black for digital, warm oak for film */
-.frame-black { padding: 10px; background: #1f1d1b; box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 24px 40px -22px rgba(0,0,0,0.55), 0 4px 10px -4px rgba(0,0,0,0.25); }
-.frame-oak { padding: 12px; background: linear-gradient(135deg, #c79a6e, #a87a52 45%, #c49568); box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 24px 40px -22px rgba(60,35,15,0.55), 0 4px 10px -4px rgba(0,0,0,0.25); }
+.frame-black { padding: 10px; background: #0f0e0d; box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 1px 0 rgba(255,255,255,0.1) inset, 0 24px 40px -22px rgba(0,0,0,0.55), 0 4px 10px -4px rgba(0,0,0,0.25); }
+.frame-oak { padding: 12px; background: linear-gradient(135deg, #c79a6e, #a87a52 45%, #c49568); box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 24px 40px -22px rgba(0,0,0,0.7), 0 4px 10px -4px rgba(0,0,0,0.25); }
 .group:hover .frame-black, .group:hover .frame-oak { box-shadow: 0 34px 50px -24px rgba(0,0,0,0.6), 0 6px 14px -6px rgba(0,0,0,0.3); }
 
 /* short "iris opening" when you visit the gallery directly */
@@ -115,4 +137,129 @@ body {
 .prop-spin { transform-box: fill-box; transform-origin: center; animation: propSpin 0.9s linear infinite; }
 @media (prefers-reduced-motion: reduce) {
   .rec-dot, .prop-spin { animation: none; }
+}
+
+/* ───────────── Liquid glass (shared with the fadeimages shop) ─────────────
+   Frosted, slightly saturated glass with a light-catching rim. Pure CSS.
+   Where backdrop-filter is unsupported the panels fall back to a near-solid tint. */
+@layer components {
+  .glass,
+  .glass-strong,
+  .glass-chip {
+    --glass-tint: var(--glass-rgb);
+    --glass-alpha: var(--glass-a);
+    --glass-blur: 18px;
+    position: relative;
+    background:
+      linear-gradient(180deg, rgb(var(--glass-sheen) / 0.07), rgb(var(--glass-sheen) / 0.012) 60%),
+      rgb(var(--glass-tint) / var(--glass-alpha));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.08),
+      inset 0 -1px 0 rgb(var(--shadow-rgb) / 0.2),
+      0 18px 40px -18px rgb(var(--shadow-rgb) / var(--shadow-a));
+    isolation: isolate;
+  }
+  .glass-strong { --glass-alpha: calc(var(--glass-a) + 0.24); --glass-blur: 28px; }
+  .glass-chip {
+    --glass-alpha: calc(var(--glass-a) - 0.08);
+    --glass-blur: 12px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), inset 0 0 0 1px color-mix(in srgb, var(--foreground) 9%, transparent);
+  }
+  .glass::before,
+  .glass-strong::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgb(255 255 255 / 0.24), rgb(255 255 255 / 0.04) 30%, rgb(255 255 255 / 0) 60%, color-mix(in srgb, var(--accent) 28%, transparent));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass, .glass-strong, .glass-chip { --glass-alpha: 0.94; }
+  }
+
+  /* Primary button: an amber droplet with a highlight, a light sweep on hover and a press. */
+  .btn-liquid {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 999px;
+    color: #241c15;
+    background: linear-gradient(180deg,
+      color-mix(in oklab, var(--accent) 70%, white),
+      var(--accent) 55%,
+      color-mix(in oklab, var(--accent) 82%, black));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.45),
+      inset 0 -2px 6px rgb(40 22 10 / 0.25),
+      0 12px 26px -12px rgb(var(--shadow-rgb) / var(--shadow-a));
+    transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.3s ease;
+  }
+  .btn-liquid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.5) 48%, transparent 64%);
+    transform: translateX(-120%);
+    transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn-liquid:hover { filter: brightness(1.05); }
+  .btn-liquid:hover::after { transform: translateX(120%); }
+  .btn-liquid:active { transform: scale(0.975); }
+
+  /* Secondary: clear glass with a soft rim. */
+  .btn-glass {
+    position: relative;
+    border-radius: 999px;
+    color: var(--foreground);
+    background: color-mix(in srgb, var(--foreground) 5%, transparent);
+    -webkit-backdrop-filter: blur(12px) saturate(1.5);
+    backdrop-filter: blur(12px) saturate(1.5);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foreground) 18%, transparent), inset 0 1px 0 rgb(255 255 255 / 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn-glass:hover {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent), inset 0 1px 0 rgb(255 255 255 / 0.12);
+    color: var(--accent-soft);
+  }
+  .btn-glass:active { transform: scale(0.975); }
+
+  /* Text links: a hairline that draws in from the left on hover / on the current page. */
+  .link-line {
+    background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.3s ease;
+  }
+  .link-line:hover,
+  .link-line:focus-visible,
+  .link-line[aria-current="page"],
+  .link-line.is-current { background-size: 100% 1px; }
+  .link-arrow { display: inline-block; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .group:hover .link-arrow,
+  .group:focus-visible .link-arrow { transform: translateX(4px); }
+
+  /* Small section label */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+}
+
+/* Warm light leaks drifting at the edges of the hero (like the shop's hero) */
+.light-leak {
+  background:
+    radial-gradient(38% 55% at 88% 12%, rgb(217 156 108 / 0.2), transparent 70%),
+    radial-gradient(45% 50% at 6% 92%, rgb(125 147 173 / 0.16), transparent 70%);
+  mix-blend-mode: screen;
 }

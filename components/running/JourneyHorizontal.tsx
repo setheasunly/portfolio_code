@@ -70,7 +70,7 @@ export default function JourneyHorizontal({ runs }: { runs: JourneyRun[] }) {
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* running totals, top right */}
         <div className="absolute right-8 top-24 z-10 text-right lg:right-12">
-          <p className="text-[11px] uppercase tracking-[0.3em] text-muted">So far</p>
+          <p className="eyebrow">So far</p>
           <p className="mt-1 font-serif text-3xl tabular-nums">{fmt(totalKm)} <span className="text-base text-muted">km</span></p>
           <p className="text-sm tabular-nums text-muted">↑ {fmt(totalUp)} m · {reached.length}/{runs.length} races</p>
         </div>
@@ -84,7 +84,7 @@ export default function JourneyHorizontal({ runs }: { runs: JourneyRun[] }) {
               </motion.div>
             ) : (
               <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-2">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-accent">Start line</p>
+                <p className="eyebrow !text-accent">Start line</p>
                 <p className="mt-2 max-w-xs font-serif text-2xl leading-snug">Every race I&apos;ve run, joined as one line.</p>
                 <p className="mt-2 text-sm text-muted">Keep scrolling to run it ↓</p>
               </motion.div>
@@ -101,16 +101,16 @@ export default function JourneyHorizontal({ runs }: { runs: JourneyRun[] }) {
             </defs>
 
             {/* faint "pencil" guide of the whole route, so you can see where you're heading */}
-            <path d={J.d} fill="none" stroke="#1c1c1c" strokeWidth={1} strokeDasharray="2 7" opacity={0.25} />
+            <path d={J.d} fill="none" stroke="var(--ink)" strokeWidth={1} strokeDasharray="2 7" opacity={0.25} />
 
             {/* the folded ribbon, revealed up to the runner */}
             <g clipPath="url(#jh-clip)"><Ribbon pts={J.pts} /></g>
             {/* the top edge drawing itself (pathLength = how much is drawn) */}
-            <motion.path d={J.d} fill="none" stroke="#1c1c1c" strokeWidth={2.4} style={{ pathLength: drawn }} />
+            <motion.path d={J.d} fill="none" stroke="var(--ink)" strokeWidth={2.4} style={{ pathLength: drawn }} />
 
             {/* start block, like the black panel at the start of the reference */}
             <g>
-              <text x={40} y={J.pts[0].y - 18} fontFamily="var(--font-inter), sans-serif" fontSize={13} letterSpacing={3} fill="#1c1c1c">START</text>
+              <text x={40} y={J.pts[0].y - 18} fontFamily="var(--font-inter), sans-serif" fontSize={13} letterSpacing={3} fill="var(--ink)">START</text>
               <text x={J.pts[1].x - 8} y={J.pts[0].y + 19} textAnchor="end" fontFamily="var(--font-inter), sans-serif" fontSize={11} letterSpacing={2} fill="#fffdf8">MY RUNNING JOURNEY →</text>
             </g>
 
@@ -124,20 +124,20 @@ export default function JourneyHorizontal({ runs }: { runs: JourneyRun[] }) {
                   className="cursor-pointer outline-none" data-cursor="link">
                   <circle cx={n.x} cy={n.y} r={46} fill="transparent" />
                   {/* thin drop line to the year row */}
-                  <path d={`M${n.x} ${n.y + 40} V${H - 70}`} stroke="#1c1c1c" strokeWidth={0.8} strokeDasharray="1 5" opacity={on ? 0.35 : 0.12} />
+                  <path d={`M${n.x} ${n.y + 40} V${H - 70}`} stroke="var(--ink)" strokeWidth={0.8} strokeDasharray="1 5" opacity={on ? 0.35 : 0.12} />
                   {/* the big label above the peak */}
                   <g style={{ opacity: on || current ? 1 : 0.18, transform: `translateY(${on ? 0 : 12}px)`, transition: "opacity .6s, transform .6s" }}>
                     <text x={n.x} y={n.y - 36} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontWeight={600} fontSize={46} letterSpacing={-1.5}
-                      fill={current ? "var(--accent)" : "#1c1c1c"} style={{ transition: "fill .4s" }}>
+                      fill={current ? "var(--accent)" : "var(--ink)"} style={{ transition: "fill .4s" }}>
                       {fmt(n.run.distanceKm)}<tspan fontSize={24} fontWeight={500} dx={4}>km</tspan>
                     </text>
-                    <text x={n.x} y={n.y - 92} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontSize={13} letterSpacing={1} fill="#6b6b6b">↑ {fmt(n.run.elevationM)} m</text>
+                    <text x={n.x} y={n.y - 92} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontSize={13} letterSpacing={1} fill="var(--muted)">↑ {fmt(n.run.elevationM)} m</text>
                   </g>
                   {/* the node itself */}
-                  <circle cx={n.x} cy={n.y} r={current ? 7 : 5} fill={current ? "var(--accent)" : on ? "#1c1c1c" : "#fafaf7"} stroke="#1c1c1c" strokeWidth={1.5} style={{ transition: "all .3s" }} />
+                  <circle cx={n.x} cy={n.y} r={current ? 7 : 5} fill={current ? "var(--accent)" : on ? "var(--ink)" : "var(--background)"} stroke="var(--ink)" strokeWidth={1.5} style={{ transition: "all .3s" }} />
                   {/* year + race name along the bottom, like the reference */}
-                  <text x={n.x} y={H - 40} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontWeight={600} fontSize={20} fill="#1c1c1c" opacity={on ? 1 : 0.35}>{n.run.date.slice(0, 4)}</text>
-                  <text x={n.x} y={H - 18} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontSize={11} letterSpacing={0.6} fill="#6b6b6b" opacity={on ? 1 : 0.35}>
+                  <text x={n.x} y={H - 40} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontWeight={600} fontSize={20} fill="var(--ink)" opacity={on ? 1 : 0.35}>{n.run.date.slice(0, 4)}</text>
+                  <text x={n.x} y={H - 18} textAnchor="middle" fontFamily="var(--font-inter), sans-serif" fontSize={11} letterSpacing={0.6} fill="var(--muted)" opacity={on ? 1 : 0.35}>
                     {n.run.name.replace(/^EXAMPLE — /, "")}{n.run.example ? " · EXAMPLE" : ""}
                   </text>
                 </g>
@@ -149,8 +149,8 @@ export default function JourneyHorizontal({ runs }: { runs: JourneyRun[] }) {
               <circle r={16} fill="var(--accent)" opacity={0.18}>
                 <animate attributeName="r" values="10;20;10" dur="1.6s" repeatCount="indefinite" />
               </circle>
-              <circle r={8} fill="var(--accent)" stroke="#fffdf8" strokeWidth={3} />
-              <g transform="translate(-10 -58) scale(0.55)" fill="none" stroke="#1c1c1c" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+              <circle r={8} fill="var(--accent)" stroke="var(--background)" strokeWidth={3} />
+              <g transform="translate(-10 -58) scale(0.55)" fill="none" stroke="var(--ink)" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="24" cy="0" r="9" />
                 <motion.path d="M22 11 L13 46 M17 24 L38 33 M17 24 L0 33 M13 46 L32 60 L27 84 M13 46 L-4 66 L-18 63" style={{ opacity: stride }} />
                 <motion.path d="M22 11 L13 46 M17 24 L33 15 M17 24 L4 38 M13 46 L20 66 L8 82 M13 46 L32 56 L40 72" style={{ opacity: strideB }} />

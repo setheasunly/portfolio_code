@@ -17,13 +17,13 @@ export default async function Photography() {
     .slice(0, 4);
 
   return (
-    <section id="photography" className="relative scroll-mt-20 overflow-hidden border-t border-line">
-      <div className="mx-auto max-w-6xl px-6 py-28">
+    <section id="photography" className="relative scroll-mt-20 overflow-hidden">
+      <div className="mx-auto max-w-6xl px-6 py-32">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="flex items-start gap-5">
             <CameraIcon className="hidden h-14 w-14 text-accent sm:block" />
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-muted">Photography</p>
+              <p className="eyebrow">Photography</p>
               <WordReveal text="Through my lens" className="mt-3 font-serif text-4xl" />
               <SignatureLine className="mt-3 w-28 text-accent" />
             </div>
@@ -48,7 +48,7 @@ export default async function Photography() {
 
         <Reveal className="mt-12">
           <Magnetic>
-            <LensLink href="/photography" className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 px-6 py-3 text-sm transition-colors hover:border-foreground">
+            <LensLink href="/photography" className="group inline-flex items-center gap-2 btn-glass px-6 py-3 text-sm">
               View all albums <span className="transition group-hover:translate-x-1">→</span>
             </LensLink>
           </Magnetic>

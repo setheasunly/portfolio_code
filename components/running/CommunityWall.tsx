@@ -10,16 +10,16 @@ export default function CommunityWall() {
     <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:gap-10">
       {communityWall.map((c, i) => (
         <figure key={c.caption} data-cursor="photo"
-          className={`relative bg-[#fffdf8] p-3 pb-12 shadow-[0_14px_30px_-18px_rgba(0,0,0,0.45)] transition duration-500 hover:z-10 hover:rotate-0 hover:scale-[1.04] ${tilt[i % tilt.length]}`}>
+          className={`relative bg-paper p-3 pb-12 text-[#2a2723] shadow-[0_18px_36px_-16px_rgba(0,0,0,0.75)] transition duration-500 hover:z-10 hover:rotate-0 hover:scale-[1.04] ${tilt[i % tilt.length]}`}>
           {/* a strip of tape holding it up */}
-          <span aria-hidden className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-[-4deg] bg-[#f3ead9]/80 shadow-sm" />
+          <span aria-hidden className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-[-4deg] bg-[#d9cdb6]/75 shadow-sm" />
           <div className="relative aspect-square overflow-hidden" style={{ background: tones[i % tones.length] }}>
             {c.photo ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={c.photo} alt={c.caption} className="h-full w-full object-cover" />
             ) : (
               // placeholder drawing: a few little runners on a horizon
-              <svg viewBox="0 0 100 100" className="h-full w-full text-foreground/40" aria-hidden>
+              <svg viewBox="0 0 100 100" className="h-full w-full text-[#2a2723]/40" aria-hidden>
                 <circle cx="72" cy="30" r="9" fill="#fffdf8" opacity="0.8" />
                 <path d="M0 74 Q30 64 55 72 T100 68 V100 H0 Z" fill="currentColor" opacity="0.25" />
                 {[24, 44, 60].map((x, k) => (
@@ -31,7 +31,7 @@ export default function CommunityWall() {
               </svg>
             )}
           </div>
-          <figcaption className="absolute inset-x-3 bottom-3 text-center font-serif text-sm italic text-foreground/75">{c.caption}</figcaption>
+          <figcaption className="absolute inset-x-3 bottom-3 text-center font-serif text-sm italic text-[#2a2723]/75">{c.caption}</figcaption>
         </figure>
       ))}
     </div>

@@ -41,7 +41,7 @@ export default function FpvPlayer({ video }: { video: Video }) {
       onPointerMove={move}
       onPointerLeave={reset}
       style={tiltOn ? { rotateX, rotateY, transformPerspective: 1200 } : undefined}
-      className="relative aspect-video w-full overflow-hidden rounded-2xl bg-foreground shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)]"
+      className="relative aspect-video w-full overflow-hidden rounded-3xl bg-shade shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)] ring-1 ring-white/10"
     >
       {playing ? (
         // The real YouTube player. youtube-nocookie.com = YouTube's privacy-friendly address.

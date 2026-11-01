@@ -38,7 +38,7 @@ export default function Gallery({ photos, film = false }: { photos: Photo[]; fil
       </div>
 
       {open !== null && (
-        <div role="dialog" aria-modal="true" onClick={close} className="fixed inset-0 z-[60] flex items-center justify-center bg-[#1c1c1c]/90 p-4 backdrop-blur-sm">
+        <div role="dialog" aria-modal="true" onClick={close} className="fixed inset-0 z-[60] flex items-center justify-center bg-shade/90 p-4 backdrop-blur-md">
           <Image src={photos[open].src} alt={photos[open].alt} width={photos[open].width} height={photos[open].height} sizes="100vw"
             className="max-h-[85vh] w-auto max-w-full rounded-md object-contain" onClick={(e) => e.stopPropagation()} />
           <button aria-label="Close" onClick={close} className="absolute right-5 top-5 text-3xl text-white/80 hover:text-white">×</button>

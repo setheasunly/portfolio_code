@@ -4,9 +4,9 @@ import type { JourneyRun } from "@/data/runs";
 export default function RunCard({ run, compact = false }: { run: JourneyRun; compact?: boolean }) {
   const year = run.date.slice(0, 4);
   return (
-    <div className={`flex gap-4 rounded-2xl border border-line bg-[#fffdf8]/95 p-4 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.35)] backdrop-blur ${compact ? "flex-col" : ""}`}>
+    <div className={`flex gap-4 glass-strong rounded-2xl p-4 ${compact ? "flex-col" : ""}`}>
       {/* photo — a placeholder until you add `photo` in data/runs.ts */}
-      <div className={`relative shrink-0 overflow-hidden rounded-lg bg-[repeating-linear-gradient(135deg,#efebe4_0_8px,#e7e2da_8px_16px)] ${compact ? "h-36 w-full" : "h-28 w-28"}`}>
+      <div className={`relative shrink-0 overflow-hidden rounded-lg bg-[repeating-linear-gradient(135deg,#2c2a27_0_8px,#26241f_8px_16px)] ${compact ? "h-36 w-full" : "h-28 w-28"}`}>
         {run.photo ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={run.photo} alt={run.name} className="h-full w-full object-cover" />
